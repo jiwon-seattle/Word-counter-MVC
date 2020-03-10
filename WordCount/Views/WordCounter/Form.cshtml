@@ -1,0 +1,25 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="card">
+  <div class="card-header">
+    Featured Application
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Word Counter Application</h5>
+    <p class="card-text"></p>
+    <form action="/wordcounter" method="post">
+      <div class="form-group">
+        <label for="text" class="form-control" id="targetWord" name="targetWord">A word: </label>
+        <input type="text" class="form-control" id="targetWord" name="targetWord">
+      </div>
+
+      <div class="form-group">
+        <label for="sentence">Where you want to find the target word:</label>
+        <input type="text" class="form-control" id="sentence" name="sentence">
+      </div>
+      <button type="text" class="btn btn-info">Find!</button>
+    </form>
+  </div>
+</div>
