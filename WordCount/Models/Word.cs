@@ -9,13 +9,17 @@ namespace WordCounter.Models
     private string _playerName;
     private string _inputWord;
     private string _inputSentence;
-    public static int ResultNumber = 0;
+
+    private static int _auto_increment_id = 0;
+    private static List<RepeatCounter> _counters = new List<RepeatCounter>{};
     
     public Word(string playerName, string inputWord, string inputSentence)
     {
       _playerName = playerName;
       _inputWord = inputWord;
       _inputSentence = inputSentence;
+      _id = _auto_increment_id++;
+      _counters.Add(this);
     }
 
     public string GetName()
@@ -30,16 +34,36 @@ namespace WordCounter.Models
     {
       return _inputSentence;
     }
+    public int GetId()
+    {
+      return _id;
+    }
+    public static int GetAutoIncrementId()
+    {
+      return _auto_increment_id;
+    }
+
+    public static string InputValidator(string targetWord, string sentence)
+    {
+      targetWord = targetWord.Trim();
+      sentence = sentence.Trim();
+      string errorMessage = "";
+      if (targetWord == "" && sentence == "")
+        errorMessage += "Target word and sentence";
+      else if (targetWord == "")
+        errorMessage += "Target word ";
+      else if (sentence == "")
+        errorMessage += "Sentence ";
+      if (!string.Equals(errorMessage, ""))
+        errorMessage += "cannot be empthy.";
+      return errorMessage;
+    }
     public string [] AssignWordSentence()
     {
-      string words = _inputSentence.Split(' ');
+      string [] words = _inputSentence.Split(' ');
       return words;
     }
 
-    public int GetAllNumbers()
-    {
-      return ResultNumber;
-    }
     public int CheckWordCounter()
     {
     
